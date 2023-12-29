@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    .calculator {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .calculator input {
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .calculator button {
+      width: 25%;
+      padding: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="result" readonly>
+
+  <div class="row">
+    <button class="btn btn-secondary" onclick="clearResult()">C</button>
+    <button class="btn btn-secondary" onclick="deleteLast()">←</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('/')">/</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('*')">*</button>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-secondary" onclick="appendCharacter('7')">7</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('8')">8</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('9')">9</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('-')">-</button>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-secondary" onclick="appendCharacter('4')">4</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('5')">5</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('6')">6</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('+')">+</button>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-secondary" onclick="appendCharacter('1')">1</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('2')">2</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('3')">3</button>
+    <button class="btn btn-secondary" onclick="calculateResult()">=</button>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-secondary" onclick="appendCharacter('0')">0</button>
+    <button class="btn btn-secondary" onclick="appendCharacter('.')">.</button>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function clearResult() {
+    document.getElementById('result').value = '';
+  }
+
+  function deleteLast() {
+    let currentResult = document.getElementById('result').value;
+    document.getElementById('result').value = currentResult.slice(0, -1);
+  }
+
+  function appendCharacter(char) {
+    document.getElementById('result').value += char;
+  }
+
+  function calculateResult() {
+    try {
+      document.getElementById('result').value = eval(document.getElementById('result').value);
+    } catch (error) {
+      document.getElementById('result').value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
